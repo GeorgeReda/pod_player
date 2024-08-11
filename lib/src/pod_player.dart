@@ -9,6 +9,7 @@ import 'package:universal_html/html.dart' as uni_html;
 import '../pod_player.dart';
 import 'controllers/pod_getx_video_controller.dart';
 import 'utils/logger.dart';
+import 'widgets/core/video_watermark.dart';
 import 'widgets/double_tap_icon.dart';
 import 'widgets/material_icon_button.dart';
 
@@ -44,6 +45,10 @@ class PodVideoPlayer extends StatefulWidget {
   final Widget? videoTitle;
   final Color? backgroundColor;
   final DecorationImage? videoThumbnail;
+  final TextDirection uiDirectionality;
+
+  /// Optional watermark widget that is shown on the top of the video.
+  final Widget? videoWatermark;
 
   /// Optional callback, fired when full screen mode toggles.
   ///
@@ -72,6 +77,8 @@ class PodVideoPlayer extends StatefulWidget {
     this.videoThumbnail,
     this.onToggleFullScreen,
     this.onLoading,
+    this.uiDirectionality = TextDirection.ltr,
+    this.videoWatermark,
   }) {
     addToUiController();
   }
@@ -90,7 +97,9 @@ class PodVideoPlayer extends StatefulWidget {
       ..videoTitle = videoTitle
       ..onToggleFullScreen = onToggleFullScreen
       ..onLoading = onLoading
-      ..videoThumbnail = videoThumbnail;
+      ..videoThumbnail = videoThumbnail
+      ..uiDirectionality = uiDirectionality
+      ..videoWatermark = videoWatermark;
   }
 
   @override

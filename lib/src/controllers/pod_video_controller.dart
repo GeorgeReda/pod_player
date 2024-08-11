@@ -8,6 +8,7 @@ class _PodVideoController extends _PodUiController {
   bool isLooping = false;
   bool isFullScreen = false;
   bool isvideoPlaying = false;
+  bool isWatermarkVisible = false;
 
   List<String> videoPlaybackSpeeds = [
     '0.25x',
@@ -111,6 +112,15 @@ class _PodVideoController extends _PodUiController {
     });
   }
 
+   /// Toggle watermark visibility.
+  void isShowWatermark(bool val) {
+    if (isWatermarkVisible == val) return;
+
+    isWatermarkVisible = val;
+    update(['watermark']);
+    update(['update-all']);
+  }
+
   ///overlay above video contrller
   void toggleVideoOverlay() {
     if (!isOverlayVisible) {
@@ -206,7 +216,7 @@ class _PodVideoController extends _PodUiController {
               SystemUiMode.manual,
               overlays: SystemUiOverlay.values,
             ),
-          ]
+          ],
         ]);
       }
 
